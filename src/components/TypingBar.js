@@ -10,7 +10,7 @@ const TypingBar = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    addTodo();
+    addTodo(text);
     setText('');
   };
   return (

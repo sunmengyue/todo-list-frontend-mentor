@@ -35,19 +35,18 @@ function App() {
     }
   }
 
-  function toggleTodo(id) {
-    const updatedTodos = todos.map((todo) => {
-      // return todo.id === id ? { ...todo, isCompleted: !isCompleted } : todo;
-      return todo;
-    });
-    setTodos(updatedTodos);
-  }
-
-  function addTodo() {
+  function addTodo(newTodoText) {
     setTodos([
       ...todos,
-      { id: Math.random() * 1000, content: text, isCompleted: false },
+      { id: Math.random() * 1000, content: newTodoText, isCompleted: false },
     ]);
+  }
+
+  function toggleTodo(id) {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo,
+    );
+    setTodos(updatedTodos);
   }
 
   return (
