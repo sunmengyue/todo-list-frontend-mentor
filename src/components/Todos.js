@@ -4,12 +4,12 @@ import Todo from './Todo';
 
 const Todos = () => {
   const todosData = useContext(TodoContext);
-  const { todos } = todosData;
+  const { filteredTodos } = todosData;
 
   return (
     <div>
       <div className="todo__list">
-        {todos.map((todo) => (
+        {filteredTodos.map((todo) => (
           <Todo todo={todo} key={todo.id} />
         ))}
       </div>

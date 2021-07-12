@@ -6,7 +6,6 @@ const Navfooter = () => {
   const todoData = useContext(TodoContext);
   const { togglePage } = todoData;
   const onTogglePage = (e) => {
-    console.log(e.target);
     togglePage(e.target);
   };
   return (

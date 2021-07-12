@@ -22,17 +22,16 @@ function App() {
   function filterHandler() {
     switch (page) {
       case 'Active':
-        setFilteredTodos(() => {
-          todos.filter((todo) => todo.isCompleted === false);
-        });
+        let activeTodos = todos.filter((todo) => todo.isCompleted === false);
+        setFilteredTodos(activeTodos);
         break;
       case 'Completed':
-        setFilteredTodos(() => {
-          todos.filter((todo) => todo.isCompleted === true);
-        });
+        let completedTodos = todos.filter((todo) => todo.isCompleted === true);
+        setFilteredTodos(completedTodos);
         break;
       default:
-        return todos;
+        setFilteredTodos(todos);
+        break;
     }
   }
 
@@ -51,7 +50,6 @@ function App() {
   }
 
   function togglePage(link) {
-    console.log(link);
     setPage(link.innerText);
   }
 
