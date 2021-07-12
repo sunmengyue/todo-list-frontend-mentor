@@ -6,26 +6,27 @@ import Navfooter from './components/Navfooter';
 import All from './pages/All';
 import Active from './pages/Active';
 import Completed from './pages/Completed';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState('');
+  const [page, setPage] = useState('All');
   const [filteredTodos, setFilteredTodos] = useState([]);
 
+  useEffect(() => {
+    filterHandler();
+    //eslint-disable-next-line
+  }, [todos, page]);
+
   function filterHandler() {
-    switch (window.location.pathname) {
-      case '/todos/active':
+    switch (page) {
+      case 'Active':
         setFilteredTodos(() => {
           todos.filter((todo) => todo.isCompleted === false);
         });
         break;
-      case '/todos/completed':
+      case 'Completed':
         setFilteredTodos(() => {
           todos.filter((todo) => todo.isCompleted === true);
         });
@@ -49,13 +50,20 @@ function App() {
     setTodos(updatedTodos);
   }
 
+  function togglePage(link) {
+    console.log(link);
+    setPage(link.innerText);
+  }
+
   return (
     <Router>
       <TodoContext.Provider
         value={{
           todos,
           setTodos,
+          filteredTodos,
           text,
+          togglePage,
           setText,
           addTodo,
           toggleTodo,
